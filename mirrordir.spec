@@ -103,8 +103,8 @@ perl -p -i -e 's/-f \$\(bindir\)\/mirrordir \$/-f \$\(bindir\)\/mirrordir \$\(DE
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-n libs -p /sbin/ldconfig
-%postun	-n libs -p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
