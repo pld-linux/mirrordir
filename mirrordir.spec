@@ -13,8 +13,8 @@ URL:		http://mirrordir.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
-BuildRequires:	perl
-Requires:	%{name}-libs = %{version}
+BuildRequires:	perl-base
+Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -64,7 +64,7 @@ mirrordir.
 Summary:	mirrordir development package
 Summary(pl):	Pakiet dla programistów mirrordir
 Group:		Development/Libraries
-Requires:	%{name}-libs = %{version}
+Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	libmirrordirz1-devel
 Obsoletes:	libdiffie1-devel
 
@@ -80,7 +80,7 @@ bibliotek mirrordir.
 Summary:	mirrordir static libraries
 Summary(pl):	Statyczne biblioteki mirrordir
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of mirrordir libraries.
@@ -90,7 +90,7 @@ Statyczna wersja bibliotek mirrordir.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 %patch1 -p1
 
 %build
@@ -103,9 +103,10 @@ Statyczna wersja bibliotek mirrordir.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-perl -p -i -e 's/-f \$\(bindir\)\/mirrordir \$/-f \$\(bindir\)\/mirrordir \$\(DESTDIR\)\$/' src/Makefile
+%{__perl} -pi -e 's/-f \$\(bindir\)\/mirrordir \$/-f \$\(bindir\)\/mirrordir \$\(DESTDIR\)\$/' src/Makefile
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -117,14 +118,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/mirrordir
-%config(noreplace) %{_sysconfdir}/secure*
-%config(noreplace) /etc/pam.d/*
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/secure*
+%config(noreplace) %verify(not size mtime md5) /etc/pam.d/*
 %{_mandir}/man*/*
 
 %files libs
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS README NEWS THANKS TODO
-%{_libdir}/lib*.so.*
+%{_libdir}/lib*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
