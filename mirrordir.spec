@@ -32,11 +32,11 @@ or:
 mirrordir /some/local/dir /other/local/directory
 
 %description -l pl
-Mirrordir wykonuje kopiê lokalnych systemów plików b±d¼ ftp. Jest
+Mirrordir wykonuje kopiê lokalnych systemów plików b±d¼ FTP. Jest
 zoptymalizowany dla wykonywania lokalnych kopii dysków jako alternatywa 
 dla urz±dzeñ RAID. Kopiuje pliki z zachowaniem wszystkich detali, 
 w³±cznie z czasami dostêpu do plików, odtwarzaj±c nawet hardlinki. 
-Sprawuje siê ¶wietnie przy wykonywaniu kopii katalogów ftp które nie 
+Sprawuje siê ¶wietnie przy wykonywaniu kopii katalogów FTP które nie 
 wspieraj± podsumowañ ls-lR. Mirror mo¿e u¿yæ skryptu C do 
 wyszczególnienia parametrów mirrora.
 
