@@ -110,7 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/mirrordir
 %config(noreplace) %{_sysconfdir}/secure*
-%config(noreplace) %{_sysconfdir}/pam.d/*
+%config(noreplace) /etc/pam.d/*
 %{_mandir}/man*/*
 
 %files libs
