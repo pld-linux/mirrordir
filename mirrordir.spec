@@ -1,23 +1,17 @@
-
-%define		_major1 1
-%define		_libname1 libmirrordirz
-%define		_major2 1
-%define		_libname2 libdiffie
-
-Name:		mirrordir
 Summary:	Easy to use directory mirroring tool
 Summary(pl):	£atwy w u¿yciu pakiet do mirrorowania katalogów
+Name:		mirrordir
 Version:	0.10.49
 Release:	0.1
+Group:		Applications/Networking
+License:	GPL
 Source0:	http://mirrordir.sourceforge.net/%{name}-%{version}.tar.gz
 Patch0:		%{name}-datadir-fix.patch.bz2
 Patch1:		%{name}-zlib-1.1.3-zfree.patch.bz2
-Group:		Applications/Networking
 URL:		http://mirrordir.sourceforge.net/
+BuildRequires:	perl
+Requires:	%{name}-libs = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-License:	GPL
-Requires:	%{_libname1}%{_major1} = %{version}
-Requires:	%{_libname2}%{_major2} = %{version}
 
 %description
 Mirrordir mirrors filesystems over ftp or locally via a minimal set of
@@ -38,7 +32,7 @@ Mirrordir wykonuje kopiê lokalnych systemów plików b±d¼ ftp. Jest
 zoptymalizowany dla wykonywania lokalnych kopii dysków jako
 alternatywa dla urz±dzeñ RAID. Kopiuje pliki z zachowaniem wszystkich
 detali, w³±cznie z czasami dostêpu do plików, odtwarzaj±c nawet
-hadrdlinki. Sprawuje siê ¶wietnie przy wykonywaniu kopii katalogów ftp
+hardlinki. Sprawuje siê ¶wietnie przy wykonywaniu kopii katalogów ftp
 które nie wspieraj± podsumowañ ls-lR. Mirror mo¿e u¿yæ skryptu C do
 wyszczególnienia parametrów mirrora.
 
@@ -47,112 +41,88 @@ mirrordir ftp://gdzies.tam.pl/katalog /jakis/lokalny/katalog
 lub:
 mirrordir /jakis/loklany/katalog /inny/lokalny/katalog
 
-%package -n %{_libname1}%{_major1}
-Summary:	The mirrordirz library, necessary to run mirrordir
-Summary(pl):	Biblioteka mirrordirz, niezbêdna do uruchomienia mirrordir
+%package libs
+Summary:	mirrordir libraries
+Summary(pl):	Biblioteki mirrordir
+Group:		Libraries
+Obsoletes:	libmirrordirz1
+Obsoletes:	libdiffie1
+
+%description libs
+mirrordir libraries (mirrordirz and diffie), necessary to run
+mirrordir.
+
+%description libs -l pl
+Biblioteki mirrordir (mirrordirz i diffie), potrzebne do dzia³ania
+mirrordir.
+
+%package devel
+Summary:	mirrordir development package
+Summary(pl):	Pakiet dla programistów mirrordir
 Group:		Development/Libraries
+Requires:	%{name}-libs = %{version}
+Obsoletes:	libmirrordirz1-devel
+Obsoletes:	libdiffie1-devel
 
-%description -n %{_libname1}%{_major1}
-The mirrordirz library, necessary to run mirrordir.
+%description devel
+mirrordir development package - for programmers that use mirrordir
+libraries.
 
-%description -n %{_libname1}%{_major1} -l pl
-Biblioteka mirrordirz, niezbêdna do uruchomienia mirrordir.
+%description devel -l pl
+Pakiet programistyczny mirrordir - dla programistów u¿ywaj±cych
+bibliotek mirrordir.
 
-%package -n %{_libname1}%{_major1}-devel
-Summary:	Static version of the mirrordirz library
-Summary(pl):	Statyczna wersja biblioteki mirrordirz
+%package static
+Summary:	mirrordir static libraries
+Summary(pl):	Statyczne biblioteki mirrordir
 Group:		Development/Libraries
-Requires:	%{_libname1}%{_major1} = %{version}
-Provides:	%{_libname1}-devel
+Requires:	%{name}-devel = %{version}
 
-%description -n %{_libname1}%{_major1}-devel
-Static version of the mirrordirz library.
+%description static
+Static version of mirrordir libraries.
 
-%description -n %{_libname1}%{_major1}-devel -l pl
-Statyczna wersja biblioteki mirrordirz.
-
-%package -n %{_libname2}%{_major2}
-Summary:	The diffie library, necessary to run mirrordir
-Summary(pl):	Biblioteka diffie, niezbêdna do uruchomienia mirrordir
-Group:		Development/Libraries
-
-%description -n %{_libname2}%{_major2}
-The diffie library, necessary to run mirrordir.
-
-%description -n %{_libname2}%{_major2} -l pl
-Biblioteka diffie, niezbêdna do uruchomienia mirrordir
-
-%package -n %{_libname2}%{_major2}-devel
-Summary:	Static version of the diffie library
-Summary(pl):	Statyczna wersja biblioteki diffie
-Group:		Development/Libraries
-Requires:	%{_libname2}%{_major2} = %{version}
-Provides:	%{_libname2}-devel
-
-%description -n %{_libname2}%{_major2}-devel
-Static version of the diffie library.
-
-%description -n %{_libname2}%{_major2}-devel -l pl
-Statyczna wersja biblioteki diffie.
+%description static -l pl
+Statyczna wersja bibliotek mirrordir.
 
 %prep
-rm -rf $RPM_BUILD_ROOT
-
 %setup -q
 %patch -p1
-%patch1 -p1 -b .zfree
+%patch1 -p1
 
 %build
 %configure2_13
 %{__make}
 
-
 %install
 rm -rf $RPM_BUILD_ROOT
 perl -p -i -e 's/-f \$\(bindir\)\/mirrordir \$/-f \$\(bindir\)\/mirrordir \$\(DESTDIR\)\$/' src/Makefile
+
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
-
-
-%post -n %{_libname1}%{_major1} -p /sbin/ldconfig
-
-%postun -n %{_libname1}%{_major1} -p /sbin/ldconfig
-
-%post -n %{_libname2}%{_major2} -p /sbin/ldconfig
-
-%postun -n %{_libname2}%{_major2} -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-n libs -p /sbin/ldconfig
+%postun	-n libs -p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS README NEWS THANKS TODO
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/mirrordir
 %config(noreplace) %{_sysconfdir}/secure*
 %config(noreplace) %{_sysconfdir}/pam.d/*
 %{_mandir}/man*/*
 
-%files -n %{_libname1}%{_major1}
+%files libs
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS README NEWS THANKS TODO
-%{_libdir}/%{_libname1}.so.*
+%{_libdir}/lib*.so.*
 
-%files -n %{_libname1}%{_major1}-devel
+%files devel
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS README NEWS THANKS TODO
-%{_libdir}/%{_libname1}.so
-%{_libdir}/%{_libname1}.a
-%{_libdir}/%{_libname1}.la
+%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.la
 
-%files -n %{_libname2}%{_major2}
+%files static
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS README NEWS THANKS TODO
-%{_libdir}/%{_libname2}.so.*
-
-%files -n %{_libname2}%{_major2}-devel
-%defattr(644,root,root,755)
-%doc AUTHORS BUGS README NEWS THANKS TODO
-%{_libdir}/%{_libname2}.so
-%{_libdir}/%{_libname2}.a
-%{_libdir}/%{_libname2}.la
+%{_libdir}/lib*.a
