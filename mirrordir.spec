@@ -6,6 +6,7 @@ Release:	0.1
 Group:		Applications/Networking
 License:	GPL
 Source0:	http://mirrordir.sourceforge.net/%{name}-%{version}.tar.gz
+# Source0-md5:	7671e541b5971ad863bba811ac77f69e
 Patch0:		%{name}-datadir-fix.patch.bz2
 Patch1:		%{name}-zlib-1.1.3-zfree.patch.bz2
 URL:		http://mirrordir.sourceforge.net/
