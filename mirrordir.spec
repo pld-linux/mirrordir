@@ -2,7 +2,7 @@ Summary:	Easy to use directory mirroring tool
 Summary(pl):	£atwy w u¿yciu pakiet do mirrorowania katalogów
 Name:		mirrordir
 Version:	0.10.49
-Release:	0.1
+Release:	1
 Group:		Applications/Networking
 License:	GPL
 Source0:	http://mirrordir.sourceforge.net/%{name}-%{version}.tar.gz
