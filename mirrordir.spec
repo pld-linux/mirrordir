@@ -18,11 +18,11 @@ Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Mirrordir mirrors filesystems over ftp or locally via a minimal set of
+Mirrordir mirrors filesystems over FTP or locally via a minimal set of
 changes. It is optimised for locally mirroring a device as an
 alternative to RAID devices. It duplicates file-systems in every
 detail, even correctly recreating hardlinks, devices and access times.
-It works well mirroring ftp sites that don't support ls-lR summaries.
+It works well mirroring FTP sites that don't support ls-lR summaries.
 Mirrordir can take a C script to customise the kind of files to mirror
 based on their stat info, name, or other information.
 
