@@ -10,6 +10,9 @@ Source0:	http://mirrordir.sourceforge.net/%{name}-%{version}.tar.gz
 Patch0:		%{name}-datadir-fix.patch.bz2
 Patch1:		%{name}-zlib-1.1.3-zfree.patch.bz2
 URL:		http://mirrordir.sourceforge.net/
+BuildRequires:  autoconf
+BuildRequires:  automake
+BuildRequires:  libtool
 BuildRequires:	perl
 Requires:	%{name}-libs = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -91,7 +94,11 @@ Statyczna wersja bibliotek mirrordir.
 %patch1 -p1
 
 %build
-%configure2_13
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+
+%configure 
 %{__make}
 
 %install
