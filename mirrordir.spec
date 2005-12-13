@@ -98,7 +98,7 @@ Statyczna wersja bibliotek mirrordir.
 %{__aclocal}
 %{__autoconf}
 
-%configure 
+%configure
 %{__make}
 
 %install
@@ -118,14 +118,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/mirrordir
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/secure*
-%config(noreplace) %verify(not size mtime md5) /etc/pam.d/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/secure*
+%config(noreplace) %verify(not md5 mtime size) /etc/pam.d/*
 %{_mandir}/man*/*
 
 %files libs
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS README NEWS THANKS TODO
-%{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
