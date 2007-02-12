@@ -1,5 +1,5 @@
 Summary:	Easy to use directory mirroring tool
-Summary(pl):	£atwy w u¿yciu pakiet do mirrorowania katalogów
+Summary(pl.UTF-8):   Åatwy w uÅ¼yciu pakiet do mirrorowania katalogÃ³w
 Name:		mirrordir
 Version:	0.10.49
 Release:	1
@@ -31,23 +31,23 @@ mirrordir ftp://some.where.com/dir /some/local/dir
 or:
 mirrordir /some/local/dir /other/local/directory
 
-%description -l pl
-Mirrordir wykonuje kopiê lokalnych systemów plików b±d¼ FTP. Jest
-zoptymalizowany dla wykonywania lokalnych kopii dysków jako alternatywa 
-dla urz±dzeñ RAID. Kopiuje pliki z zachowaniem wszystkich detali, 
-w³±cznie z czasami dostêpu do plików, odtwarzaj±c nawet hardlinki. 
-Sprawuje siê ¶wietnie przy wykonywaniu kopii katalogów FTP które nie 
-wspieraj± podsumowañ ls-lR. Mirror mo¿e u¿yæ skryptu C do 
-wyszczególnienia parametrów mirrora.
+%description -l pl.UTF-8
+Mirrordir wykonuje kopiÄ™ lokalnych systemÃ³w plikÃ³w bÄ…dÅº FTP. Jest
+zoptymalizowany dla wykonywania lokalnych kopii dyskÃ³w jako alternatywa 
+dla urzÄ…dzeÅ„ RAID. Kopiuje pliki z zachowaniem wszystkich detali, 
+wÅ‚Ä…cznie z czasami dostÄ™pu do plikÃ³w, odtwarzajÄ…c nawet hardlinki. 
+Sprawuje siÄ™ Å›wietnie przy wykonywaniu kopii katalogÃ³w FTP ktÃ³re nie 
+wspierajÄ… podsumowaÅ„ ls-lR. Mirror moÅ¼e uÅ¼yÄ‡ skryptu C do 
+wyszczegÃ³lnienia parametrÃ³w mirrora.
 
-Podsumowuj±c, wpisz:
+PodsumowujÄ…c, wpisz:
 mirrordir ftp://gdzies.tam.pl/katalog /jakis/lokalny/katalog
 lub:
 mirrordir /jakis/loklany/katalog /inny/lokalny/katalog
 
 %package libs
 Summary:	mirrordir libraries
-Summary(pl):	Biblioteki mirrordir
+Summary(pl.UTF-8):   Biblioteki mirrordir
 Group:		Libraries
 Obsoletes:	libmirrordirz1
 Obsoletes:	libdiffie1
@@ -56,13 +56,13 @@ Obsoletes:	libdiffie1
 mirrordir libraries (mirrordirz and diffie), necessary to run
 mirrordir.
 
-%description libs -l pl
-Biblioteki mirrordir (mirrordirz i diffie), potrzebne do dzia³ania
+%description libs -l pl.UTF-8
+Biblioteki mirrordir (mirrordirz i diffie), potrzebne do dziaÅ‚ania
 mirrordir.
 
 %package devel
 Summary:	mirrordir development package
-Summary(pl):	Pakiet dla programistów mirrordir
+Summary(pl.UTF-8):   Pakiet dla programistÃ³w mirrordir
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	libmirrordirz1-devel
@@ -72,20 +72,20 @@ Obsoletes:	libdiffie1-devel
 mirrordir development package - for programmers that use mirrordir
 libraries.
 
-%description devel -l pl
-Pakiet programistyczny mirrordir - dla programistów u¿ywaj±cych
+%description devel -l pl.UTF-8
+Pakiet programistyczny mirrordir - dla programistÃ³w uÅ¼ywajÄ…cych
 bibliotek mirrordir.
 
 %package static
 Summary:	mirrordir static libraries
-Summary(pl):	Statyczne biblioteki mirrordir
+Summary(pl.UTF-8):   Statyczne biblioteki mirrordir
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of mirrordir libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna wersja bibliotek mirrordir.
 
 %prep
