@@ -1,5 +1,5 @@
 Summary:	Easy to use directory mirroring tool
-Summary(pl.UTF-8):   Łatwy w użyciu pakiet do mirrorowania katalogów
+Summary(pl.UTF-8):	Łatwy w użyciu pakiet do mirrorowania katalogów
 Name:		mirrordir
 Version:	0.10.49
 Release:	1
@@ -47,7 +47,7 @@ mirrordir /jakis/loklany/katalog /inny/lokalny/katalog
 
 %package libs
 Summary:	mirrordir libraries
-Summary(pl.UTF-8):   Biblioteki mirrordir
+Summary(pl.UTF-8):	Biblioteki mirrordir
 Group:		Libraries
 Obsoletes:	libmirrordirz1
 Obsoletes:	libdiffie1
@@ -62,7 +62,7 @@ mirrordir.
 
 %package devel
 Summary:	mirrordir development package
-Summary(pl.UTF-8):   Pakiet dla programistów mirrordir
+Summary(pl.UTF-8):	Pakiet dla programistów mirrordir
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Obsoletes:	libmirrordirz1-devel
@@ -78,7 +78,7 @@ bibliotek mirrordir.
 
 %package static
 Summary:	mirrordir static libraries
-Summary(pl.UTF-8):   Statyczne biblioteki mirrordir
+Summary(pl.UTF-8):	Statyczne biblioteki mirrordir
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
